@@ -1,0 +1,142 @@
+<!doctype html>
+    <head>
+        <title>RapidVisa Venn Diagram</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+        <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="venn.js"></script>
+
+            <style>
+                body {
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 700;
+                    font-size : 14px;
+                    margin: 2% 2% 2% 2%;
+}
+               .venntooltip {
+                    font-size : 14px;
+                    position: absolute;
+                    text-align: center;
+                    width: 128px;
+                    height: 50px;
+                    background: #333;
+                    color: #fff;
+                    padding: 2px;
+                    border: 0px;
+                    border-radius: 8px;
+                    opacity: 0;
+                }
+            </style>
+    </head>
+<body>
+<div id="container">
+   <h1>RapidVisa Venn Diagram</h1>
+   <p>This rendition utilizes Ben Frederickson's <a href="http://www.benfrederickson.com/better-venn-diagrams/">Algorithm for Area Proportional Venn and Euler Diagrams</a></p>
+    <div id="venn_one" style=float:left>
+        <h3>How K-1 Applicants Met</h3>
+    </div>
+
+    <script>
+        var sets = [
+                    {sets: ["Social Media"], figure: 880, label: "Social Media", size: 880},
+                    {sets: ["General Dating Site"], figure: 622, label: "General Dating Site", size: 622},
+                    {sets: ["Business"], figure: 249, label: "Business", size: 249},
+                    {sets: ["Unexpected"], figure: 727, label: "Unexpected", size: 727},
+
+                    {sets: ["Chat App"], figure: 159, label: "Chat App", size: 159},
+                    {sets: ["LGBTQ Dating Site"], figure: 48, label: "LGBTQ Dating Site", size: 68},
+                    {sets: ["Military"], figure: 74, label: "Military", size: 74},
+                    {sets: ["Friends and Family"], figure: 919, label: "Friends and Family", size: 919},
+
+                    {sets: ["Online Not Disclosed"], figure: 119, label: "Online Other", size: 119},
+                    {sets: ["Regional Dating Site"], figure: 961, label: "Regional Dating Site", size: 961},
+                    {sets: ["On Mission"], figure: 80, label: "Mission", size: 80},
+                    {sets: ["Vacation"], figure: 514, label: "Vacation", size: 514},
+
+                    {sets: ["Gaming"], figure: 112, label: "Gaming", size: 112},
+                    {sets: ["Religious Dating Site"], figure: 180, label: "Religious Dating Sites", size: 180},
+                    {sets: ["Study Abroad"], figure: 146, label: "Study Abroad", size: 146},
+
+                    {sets: ["Social Media", "Business"], figure: 4, label: "", size: 4},
+                    {sets: ["Social Media", "On Mission"], figure: 3, label: "", size: 3},
+                    {sets: ["Social Media", "Study Abroad"], figure: 6, label: "", size: 6},
+                    {sets: ["Social Media", "Friends and Family"], figure: 84, label: "", size: 84},
+                    {sets: ["Social Media", "Vacation"], figure: 12, label: "", size: 12},
+                    {sets: ["Vacation", "LGBTQ Dating Site"], figure: 2, label: "", size: 2},
+                    {sets: ["General Dating Site", "LGBTQ Dating Site"], figure: 3, label: "", size: 3},
+                    {sets: ["General Dating Site", "Business"], figure: 13, label: "", size: 13},
+                    {sets: ["General Dating Site", "Military"], figure: 9, label: "", size: 9},
+                    {sets: ["General Dating Site", "Study Abroad"], figure: 3, label: "", size: 3},
+                    {sets: ["General Dating Site", "Vacation"], figure: 19, label: "", size: 19},
+                    {sets: ["Religious Dating Site", "Regional Dating Site"], figure: 69, label: "", size: 69},
+                    {sets: ["Religious Dating Site", "Unexpected"], figure: 6, label: "", size: 6},
+                    {sets: ["Regional Dating Site", "Vacation"], figure: 3, label: "", size: 3},
+                    {sets: ["Online Not Disclosed", "Friends and Family"], figure: 10, label: "", size: 10},
+                    {sets: ["Chat App", "Friends and Family"], figure: 19, label: "", size: 19},
+                    {sets: ["Chat App", "Vacation"], figure: 4, label: "", size: 4},
+                    {sets: ["Chat App", "Unexpected"], figure: 4, label: "", size: 4},
+                    {sets: ["Business", "Friends and Family"], figure: 15, label: "", size: 15},
+                    {sets: ["Business", "Unexpected"], figure: 99, label: "", size: 99},
+                    {sets: ["Military", "Friends and Family"], figure: 9, label: "", size: 9},
+                    {sets: ["Military", "Unexpected"], figure: 30, label: "", size: 30},
+                    {sets: ["On Mission", "Friends and Family"], figure: 5, label: "", size: 5},
+                    {sets: ["On Mission", "Unexpected"], figure: 12, label: "", size: 12},
+                    {sets: ["Study Abroad", "Friends and Family"], figure: 12, label: "", size: 12},
+                    {sets: ["Study Abroad", "Unexpected"], figure: 8, label: "", size: 8},
+                    {sets: ["Friends and Family", "Vacation"], figure: 74, label: "", size: 74},
+                    {sets: ["Friends and Family", "Unexpected"], figure: 74, label: "", size: 74},
+                    {sets: ["Vacation", "Unexpected"], figure: 161, label: "", size: 161}
+                    ];
+
+        var chart = venn.VennDiagram()
+            .width(600)
+            .height(400)
+
+        var div = d3.select("#venn_one").datum(sets).call(chart);
+            div.selectAll("text").style("fill", "white");
+            div.selectAll(".venn-circle path")
+                    .style("fill-opacity", .8)
+                    .style("stroke-width", 1)
+                    .style("stroke-opacity", 1)
+                    .style("stroke", "fff");
+
+        var tooltip = d3.select("#venn_one").append("div")
+            .attr("class", "venntooltip");
+
+        div.selectAll("g")
+            .on("mouseover", function(d, i) {
+                // sort all the areas relative to the current item
+                venn.sortAreas(div, d);
+                // Display a tooltip with the current size
+                tooltip.transition().duration(40).style("opacity", 1);
+                tooltip.text("How " + d.size + " Respondents Met");
+                // highlight the current path
+                // highlight the current path
+                var selection = d3.select(this).transition("tooltip").duration(400);
+                selection.select("path")
+                    .style("stroke-width", 3)
+                    .style("fill-opacity", d.sets.length == 1 ? .8 : 0)
+                    .style("stroke-opacity", 1);
+            })
+            .on("mousemove", function() {
+                tooltip.style("left", (d3.event.pageX) + "px")
+                       .style("top", (d3.event.pageY - -28) + "px");
+            })
+            .on("mouseout", function(d, i) {
+                tooltip.transition().duration(2000).style("opacity", 0);
+                var selection = d3.select(this).transition("tooltip").duration(400);
+                selection.select("path")
+                    .style("stroke-width", 3)
+                    .style("fill-opacity", d.sets.length == 1 ? .8 : 0)
+                    .style("stroke-opacity", 1);
+            });
+        //https://github.com/benfred/venn.js/issues/22
+    </script>
+</div>
+</body>
+</html>

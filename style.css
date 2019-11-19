@@ -31,7 +31,7 @@ table.tableizer-table {
 
 .notbold {
 	font-weight: normal;
-	font-size: 2em;
+	font-size: 14px;
 }
 
 .background {
@@ -66,5 +66,5 @@ table.tableizer-table {
 text {
   fill: #606060;
   font-family: Raleway;
-	font-size: 2em;
+	font-size: 14px;
 }

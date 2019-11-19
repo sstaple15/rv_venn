@@ -5,6 +5,7 @@ body {
 
 p {
 	font-weight: bold;
+	fill: #606060;
 }
 
 table.tableizer-table {
@@ -64,7 +65,7 @@ table.tableizer-table {
 }
 
 text {
-  fill: #000;
+  fill: #606060;
   font-family: Raleway;
 	font-size: 2em;
 }

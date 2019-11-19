@@ -1,10 +1,15 @@
+@font-face{
+font-family: "Raleway SemiBold";
+src: url("../fonts/raleway/Raleway-SemiBold.ttf");
+}
+
 body {
-	background-color: #ffffff !important;
+	color: #606060 !important;
+	font-family: 'Open Sans',sans-serif;
 }
 
 p {
 	font-weight: bold;
-	fill: #606060;
 }
 
 table.tableizer-table {
@@ -31,7 +36,8 @@ table.tableizer-table {
 
 .notbold {
 	font-weight: normal;
-	font-size: 14px;
+	font-size: 1.2em;
+	font-family:"Open Sans";
 }
 
 .background {
@@ -50,21 +56,21 @@ table.tableizer-table {
 }
 
 .venntooltip {
-  font-family: sans-serif;
+  font-family: "Open Sans";
   line-height: 1.25;
-  font-size : 12px;
+  font-size : 16px;
   padding: 6px;
   position: absolute;
   text-align: center;
   background: #333;
   color: #fff;
   border-color: #000;
-  border-radius: 6px;
+  border-radius: 2px;
   text-align: center;
 }
 
 text {
-  fill: #606060;
+  fill: #000;
   font-family: Raleway;
-	font-size: 14px;
+  font-size: 12px;
 }

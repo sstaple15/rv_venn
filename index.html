@@ -106,8 +106,8 @@
                     {sets: ["Vacation", "Unexpected"], figure: 161, label: "", size: 161}
                     ];
         var chart = venn.VennDiagram()
-            .width(600)
-            .height(400)
+            .width(900)
+            .height(500)
         var div = d3.select("#venn_one").datum(sets).call(chart);
             div.selectAll("text").style("fill", "white");
             div.selectAll(".venn-circle path")
